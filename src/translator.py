@@ -36,5 +36,15 @@ class PigLatinTranslator:
             if last_letter == "y":
                 return self.phrase + "nay"
             return self.phrase + "ay"
-        substring = self.phrase[1:]
-        return substring + first_letter + "ay"
+
+        found = False
+        i = 0
+        while not found and i < len(self.phrase):
+            letter = self.phrase[i]
+            if letter in "aeiou":
+                found = True
+            else:
+                i += 1
+        first_part = self.phrase[0:i]
+        second_part = self.phrase[i:]
+        return second_part + first_part + "ay"
