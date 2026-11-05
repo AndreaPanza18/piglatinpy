@@ -37,6 +37,12 @@ class PigLatinTranslator:
                 return self.phrase + "nay"
             return self.phrase + "ay"
 
+        i = self.first_index_of_vowel()
+        first_part = self.phrase[0:i]
+        second_part = self.phrase[i:]
+        return second_part + first_part + "ay"
+
+    def first_index_of_vowel(self):
         found = False
         i = 0
         while not found and i < len(self.phrase):
@@ -45,6 +51,4 @@ class PigLatinTranslator:
                 found = True
             else:
                 i += 1
-        first_part = self.phrase[0:i]
-        second_part = self.phrase[i:]
-        return second_part + first_part + "ay"
+        return i
