@@ -3,6 +3,17 @@ from networkx.classes import is_empty
 from src.error import PigLatinError
 
 
+def first_index_of_vowel(word):
+    found = False
+    i = 0
+    while not found and i < len(word):
+        letter = word[i]
+        if letter in "aeiou":
+            found = True
+        else:
+            i += 1
+    return i
+
 class PigLatinTranslator:
 
     def __init__(self, phrase: str):
@@ -37,18 +48,7 @@ class PigLatinTranslator:
                 return self.phrase + "nay"
             return self.phrase + "ay"
 
-        i = self.first_index_of_vowel()
+        i = first_index_of_vowel(self.phrase)
         first_part = self.phrase[0:i]
         second_part = self.phrase[i:]
         return second_part + first_part + "ay"
-
-    def first_index_of_vowel(self):
-        found = False
-        i = 0
-        while not found and i < len(self.phrase):
-            letter = self.phrase[i]
-            if letter in "aeiou":
-                found = True
-            else:
-                i += 1
-        return i
